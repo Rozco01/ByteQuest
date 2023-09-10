@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PressButton : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PressButton : MonoBehaviour
     public string buttonTag = "button"; // Etiqueta del objeto botón.
     [SerializeField] private Animator buttonAnimator;
     [SerializeField] private Animator doorAnimator;
+    [SerializeField] private Image buttonImage;
 
 
     void Update()
@@ -25,6 +27,7 @@ public class PressButton : MonoBehaviour
                 // Activa la animación (por ejemplo, un bool llamado "IsPress" en el Animator).
                 if (buttonAnimator != null)
                 {
+                    buttonImage.color = Color.green;
                     if (Input.GetMouseButtonDown(0))
                     {
                         // Activa la animación del botón.
@@ -45,6 +48,10 @@ public class PressButton : MonoBehaviour
                         buttonAnimator.SetBool("IsPress", false);
                     }
                 }
+            }
+            else
+            {
+                buttonImage.color = Color.white;
             }
         }
     }

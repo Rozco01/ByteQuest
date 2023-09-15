@@ -45,16 +45,6 @@ public class PhysicsPickup : MonoBehaviour
         if (heldObj != null)
         {
             MoveObject();
-            // Agregar rotación cuando se presionan las teclas E y Q
-            float rotationSpeed = 200.0f; // Ajusta la velocidad de rotación según tus necesidades
-            if (Input.GetKey(KeyCode.E))
-            {
-                RotateObject(Vector3.up, rotationSpeed);
-            }
-            else if (Input.GetKey(KeyCode.Q))
-            {
-                RotateObject(Vector3.up, -rotationSpeed);
-            }
         }
 
 

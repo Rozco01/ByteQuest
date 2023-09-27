@@ -1,35 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class DialogueScript : MonoBehaviour
 {
-    public MonitorController monitorController; // Agrega una referencia al panel de diálogo.
     public TextMeshProUGUI dialogueText;
     public string[] lines;
     public float textSpeed = 1f;
-    int index;
-    private bool isWriting = false; // Variable para rastrear si se está escribiendo el texto.
+    private int index;
+    private bool isWriting = false;
+    public PlayerController playerController;
 
-    // Start is called before the first frame update
     void Start()
     {
         dialogueText.text = string.Empty;
         isWriting = false;
         index = 0;
-
-        StartDialogue(); // Asegúrate de llamar a StartDialogue para iniciar la escritura.
+        playerController.enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isWriting)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                // Detener la escritura si se presiona R.
                 StopAllCoroutines();
                 dialogueText.text = lines[index];
                 isWriting = false;
@@ -37,25 +32,29 @@ public class DialogueScript : MonoBehaviour
         }
         else
         {
-            if (index == 0)
-            {
-                NextLine();
-            }
-            else if (index < lines.Length)
+            if (index < lines.Length)
             {
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    // Iniciar la escritura de la siguiente línea.
                     NextLine();
                 }
             }
         }
     }
 
-    public void StartDialogue()
+    public void writeArray(string[] newLines)
     {
+        lines = newLines;
         index = 0;
+        dialogueText.text = string.Empty;
         isWriting = true;
+
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+
+        }
+
         StartCoroutine(WriteLine());
     }
 
@@ -80,6 +79,10 @@ public class DialogueScript : MonoBehaviour
         }
         else
         {
+            index = 0;
+            lines = null;
+            dialogueText.text = string.Empty;
+            playerController.enabled = true;
             gameObject.SetActive(false);
         }
     }

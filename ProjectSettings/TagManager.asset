@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Cube
   - button
+  - CodeBlock
+  - CodePanel
+  - PlayButton
   layers:
   - Default
   - TransparentFX

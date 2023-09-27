@@ -9,6 +9,7 @@ public class PhysicsPickup : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] Transform holdArea;
     [SerializeField] private GameObject heldObj;
+    private CodeBlock codeBlock;
     [SerializeField] private Rigidbody heldObjRb;
     [SerializeField] private LayerMask pickupLayerMask;
 
@@ -17,13 +18,16 @@ public class PhysicsPickup : MonoBehaviour
     [Header(" Physics Parameters")]
     [SerializeField] private float pickupRange = 5.0f;
     [SerializeField] private float pickupForce = 150.0f;
+    public bool IsholdingObj = false;
 
     [Header("Canvas Pointer")]
     public Image pointerImg;
 
-    private void Start() {
+    private void Start()
+    {
         pointerImg.enabled = false;
     }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -35,7 +39,6 @@ public class PhysicsPickup : MonoBehaviour
                 {
                     PickupObject(hit.transform.gameObject);
                 }
-
             }
             else
             {
@@ -46,14 +49,13 @@ public class PhysicsPickup : MonoBehaviour
         {
             MoveObject();
         }
-
-
     }
 
     void PickupObject(GameObject pickObj)
     {
         if (pickObj.GetComponent<Rigidbody>())
         {
+            codeBlock = pickObj.GetComponent<CodeBlock>();
             pointerImg.enabled = true;
             heldObjRb = pickObj.GetComponent<Rigidbody>();
             heldObjRb.useGravity = false;
@@ -61,8 +63,10 @@ public class PhysicsPickup : MonoBehaviour
             heldObjRb.drag = 20;
             heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
 
+            codeBlock.isHolding = true;
             heldObjRb.transform.parent = holdArea;
             heldObj = pickObj;
+            Debug.Log("pick" + codeBlock.isHolding);
         }
     }
 
@@ -75,14 +79,20 @@ public class PhysicsPickup : MonoBehaviour
         heldObjRb.transform.parent = null;
         heldObj = null;
         pointerImg.enabled = false;
+        codeBlock.isHolding = false;
+        Debug.Log("Dropped" + codeBlock.isHolding);
     }
 
     void MoveObject()
     {
-        if (Vector3.Distance(heldObj.transform.position, holdArea.position) > 0.1f)
+        if (Vector3.Distance(holdArea.position, heldObj.transform.position) > 0.1f)
         {
             Vector3 moveDirection = (holdArea.position - heldObj.transform.position).normalized;
             heldObjRb.AddForce(moveDirection * pickupForce);
+
+            // Alinea la rotación del objeto con la del holdArea
+            Quaternion targetRotation = Quaternion.LookRotation(holdArea.forward, Vector3.up);
+            heldObjRb.MoveRotation(targetRotation);
         }
     }
 

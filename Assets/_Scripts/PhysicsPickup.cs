@@ -53,34 +53,65 @@ public class PhysicsPickup : MonoBehaviour
 
     void PickupObject(GameObject pickObj)
     {
-        if (pickObj.GetComponent<Rigidbody>())
+        Rigidbody rb = pickObj.GetComponent<Rigidbody>();
+        if (rb != null)
         {
             codeBlock = pickObj.GetComponent<CodeBlock>();
-            pointerImg.enabled = true;
-            heldObjRb = pickObj.GetComponent<Rigidbody>();
-            heldObjRb.useGravity = false;
-            heldObjRb.velocity = Vector3.zero;
-            heldObjRb.drag = 20;
-            heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
 
-            codeBlock.isHolding = true;
-            heldObjRb.transform.parent = holdArea;
-            heldObj = pickObj;
-            Debug.Log("pick" + codeBlock.isHolding);
+            if (codeBlock != null)
+            {
+                pointerImg.enabled = true;
+                heldObjRb = rb;
+                heldObjRb.useGravity = false;
+                heldObjRb.velocity = Vector3.zero;
+                heldObjRb.drag = 20;
+                heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
+
+                codeBlock.isHolding = true;
+                heldObjRb.transform.parent = holdArea;
+                heldObj = pickObj;
+                Debug.Log("pick" + codeBlock.isHolding);
+            }
+            else
+            {
+                // Si el objeto no tiene el componente CodeBlock, simplemente lo recogemos sin hacer nada especial.
+                pointerImg.enabled = true;
+                heldObjRb = rb;
+                heldObjRb.useGravity = false;
+                heldObjRb.velocity = Vector3.zero;
+                heldObjRb.drag = 20;
+                heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
+                heldObjRb.transform.parent = holdArea;
+                heldObj = pickObj;
+            }
         }
     }
-
     void Drop()
     {
-        heldObjRb.useGravity = true;
-        heldObjRb.drag = 1;
-        heldObjRb.constraints = RigidbodyConstraints.None;
 
-        heldObjRb.transform.parent = null;
-        heldObj = null;
-        pointerImg.enabled = false;
-        codeBlock.isHolding = false;
-        Debug.Log("Dropped" + codeBlock.isHolding);
+        if (codeBlock != null)
+        {
+            heldObjRb.useGravity = true;
+            heldObjRb.drag = 1;
+            heldObjRb.constraints = RigidbodyConstraints.None;
+
+            heldObjRb.transform.parent = null;
+            heldObj = null;
+            pointerImg.enabled = false;
+            codeBlock.isHolding = false;
+            Debug.Log("Dropped" + codeBlock.isHolding);
+        }
+        else
+        {
+            heldObjRb.useGravity = true;
+            heldObjRb.drag = 1;
+            heldObjRb.constraints = RigidbodyConstraints.None;
+
+            heldObjRb.transform.parent = null;
+            heldObj = null;
+            pointerImg.enabled = false;
+        }
+
     }
 
     void MoveObject()
@@ -94,11 +125,5 @@ public class PhysicsPickup : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(holdArea.forward, Vector3.up);
             heldObjRb.MoveRotation(targetRotation);
         }
-    }
-
-    void RotateObject(Vector3 axis, float speed)
-    {
-        // Rotar el objeto en el eje especificado a la velocidad dada
-        heldObj.transform.Rotate(axis, speed * Time.deltaTime);
     }
 }

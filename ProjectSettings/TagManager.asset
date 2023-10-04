@@ -9,6 +9,7 @@ TagManager:
   - CodeBlock
   - CodePanel
   - PlayButton
+  - Sphere
   layers:
   - Default
   - TransparentFX

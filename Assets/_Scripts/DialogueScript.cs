@@ -60,13 +60,23 @@ public class DialogueScript : MonoBehaviour
 
     IEnumerator WriteLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        if (index < lines.Length)
         {
-            dialogueText.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            foreach (char c in lines[index].ToCharArray())
+            {
+                dialogueText.text += c;
+                yield return new WaitForSeconds(textSpeed);
+            }
+            isWriting = false;
         }
-        isWriting = false;
+        else
+        {
+            index=0;
+            Debug.Log("Ay no, se acabaron las líneas.");
+            isWriting = false;
+        }
     }
+
 
     public void NextLine()
     {

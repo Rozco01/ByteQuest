@@ -8,6 +8,10 @@ public class PanelController : MonoBehaviour
     public int numberOfObjectsInPanel;
     public bool isCorrect = false;
 
+    //Sonido 
+    public AudioClip miClip;
+    private AudioSource miAudioSource;
+
     // Variables para el material correcto y el material incorrecto
     public Material correctMaterial;
     public Material incorrectMaterial;
@@ -19,6 +23,17 @@ public class PanelController : MonoBehaviour
 
     private bool isRaycastHitting = false;
 
+    private void Start()
+    {
+        miAudioSource = gameObject.GetComponent<AudioSource>();
+
+        if (miAudioSource == null)
+        {
+            miAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        miAudioSource.clip = miClip;
+    }
     void Update()
     {
         // Comprueba el número de objetos en el panel
@@ -36,6 +51,7 @@ public class PanelController : MonoBehaviour
             {
                 // Si es correcto, cambia el material y activa la animación de la puerta
                 ChangeMaterial(correctMaterial);
+                ReproducirSonido();
                 OpenDoor();
             }
             else
@@ -97,6 +113,14 @@ public class PanelController : MonoBehaviour
         {
             // Si no, establece el interruptor en false
             isCorrect = false;
+        }
+    }
+
+    public void ReproducirSonido()
+    {
+        if (miAudioSource != null && miClip != null)
+        {
+            miAudioSource.PlayOneShot(miClip);
         }
     }
 

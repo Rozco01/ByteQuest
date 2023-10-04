@@ -3,7 +3,7 @@ using UnityEngine;
 public class CodeBlock : MonoBehaviour
 {
     public bool isHolding = false;
-    public Vector3 desiredRotation = new Vector3(0f, -90f, 0f); // La rotación deseada
+    public Vector3 desiredRotation = new Vector3(0f, 0f, 0f); // La rotación deseada
     public Vector3 initialPosition; // Almacena la posición inicial Y
     public GameObject codeBlockObject;
     public PanelController panelController;

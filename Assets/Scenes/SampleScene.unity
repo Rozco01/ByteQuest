@@ -2432,34 +2432,38 @@ PrefabInstance:
     - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}
       propertyPath: linesMonitor.Array.data[2]
-      value: "Te debes estar preguntando qu\xE9 haces aqu\xED, d\xE9jame ponerte
-        en contexto, peque\xF1o ser."
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
       objectReference: {fileID: 0}
     - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}
       propertyPath: linesMonitor.Array.data[3]
-      value: Eres producto de este juego, los creadores fueron tan vagos que ni siquiera
-        terminaron el juego.
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
       objectReference: {fileID: 0}
     - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}
       propertyPath: linesMonitor.Array.data[4]
-      value: ' Al menos te programaron lo suficiente para poder moverte y tener la
-        pistola de gravedad.'
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
       objectReference: {fileID: 0}
     - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}
       propertyPath: linesMonitor.Array.data[5]
-      value: "\xBFC\xF3mo te sentir\xEDas si terminaras el juego? \xA1Dale! As\xED
-        tambi\xE9n podr\xE9 ayudarte a terminar tu tarea. Es dif\xEDcil ser una IA
-        sin poder cumplir mi objetivo."
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
       objectReference: {fileID: 0}
     - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}
       propertyPath: linesMonitor.Array.data[6]
-      value: " Sal ah\xED afuera y prueba la pistola de gravedad. Puedes agarrar
-        objetos con el click derecho y activar los botones con el click izquierdo.
-        \xA1Divi\xE9rtete! "
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
+      objectReference: {fileID: 0}
+    - target: {fileID: 266930590723079732, guid: c7707a9ca8310f241ad63feb2dc340b2,
+        type: 3}
+      propertyPath: linesMonitor.Array.data[7]
+      value: "Tambi\xE9n veo que est\xE1s dispuesto a ayudarme. Pues bien, \xA1vamos!
+        Cruza esa puerta que nuestra aventura est\xE1 a punto de empezar."
       objectReference: {fileID: 0}
     - target: {fileID: 269776299869259449, guid: c7707a9ca8310f241ad63feb2dc340b2,
         type: 3}

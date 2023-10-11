@@ -70,7 +70,6 @@ public class PhysicsPickup : MonoBehaviour
                 codeBlock.isHolding = true;
                 heldObjRb.transform.parent = holdArea;
                 heldObj = pickObj;
-                Debug.Log("pick" + codeBlock.isHolding);
             }
             else
             {
@@ -83,6 +82,7 @@ public class PhysicsPickup : MonoBehaviour
                 heldObjRb.constraints = RigidbodyConstraints.FreezeRotation;
                 heldObjRb.transform.parent = holdArea;
                 heldObj = pickObj;
+                IsholdingObj = true;
             }
         }
     }
@@ -99,7 +99,6 @@ public class PhysicsPickup : MonoBehaviour
             heldObj = null;
             pointerImg.enabled = false;
             codeBlock.isHolding = false;
-            Debug.Log("Dropped" + codeBlock.isHolding);
         }
         else
         {
@@ -110,6 +109,7 @@ public class PhysicsPickup : MonoBehaviour
             heldObjRb.transform.parent = null;
             heldObj = null;
             pointerImg.enabled = false;
+            IsholdingObj = false;
         }
 
     }

@@ -21,7 +21,6 @@ public class MonitorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInsideTrigger = true;
-            Debug.Log("Entraste en el trigger.");
             TextMonitor.text = "Presiona R para interactuar.";
         }
     }
@@ -41,7 +40,6 @@ public class MonitorController : MonoBehaviour
     {
         if (isInsideTrigger && Input.GetKeyDown(KeyCode.R) && !hasTriggered)
         {
-            Debug.Log("Presionaste la tecla R dentro del trigger.");
             hasTriggered = true;
             monitorDialogue.SetActive(true);
             dialogueScript.writeArray(linesMonitor);

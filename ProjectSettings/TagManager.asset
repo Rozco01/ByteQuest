@@ -10,6 +10,7 @@ TagManager:
   - CodePanel
   - PlayButton
   - Sphere
+  - Sensor
   layers:
   - Default
   - TransparentFX

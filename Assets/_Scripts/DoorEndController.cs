@@ -10,7 +10,6 @@ public class DoorEndController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInsideDoor = true;
-            Debug.Log("Entraste en el trigger.");
         }
     }
 }

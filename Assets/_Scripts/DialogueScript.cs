@@ -72,7 +72,6 @@ public class DialogueScript : MonoBehaviour
         else
         {
             index=0;
-            Debug.Log("Ay no, se acabaron las líneas.");
             isWriting = false;
         }
     }

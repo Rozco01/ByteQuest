@@ -11,6 +11,8 @@ public class ReturnController : MonoBehaviour
             other.gameObject.transform.position = returnPositionPlayer;
         }else if (other.gameObject.tag == "CodeBlock") {
             other.gameObject.transform.position = returnPositionCodeBlock;
+        }else if (other.gameObject.tag == "Cube") {
+            other.gameObject.transform.position = returnPositionCodeBlock;
         }    
     }
 }

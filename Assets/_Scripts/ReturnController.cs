@@ -7,12 +7,6 @@ public class ReturnController : MonoBehaviour
     public Vector3 returnPositionPlayer, returnPositionCodeBlock;
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
             other.gameObject.transform.position = returnPositionPlayer;
-        }else if (other.gameObject.tag == "CodeBlock") {
-            other.gameObject.transform.position = returnPositionCodeBlock;
-        }else if (other.gameObject.tag == "Cube") {
-            other.gameObject.transform.position = returnPositionCodeBlock;
-        }    
     }
 }

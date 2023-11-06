@@ -7,7 +7,6 @@ public class PauseController : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject pointer;
     public GameObject pauseIMG;
-    public GameObject botonPausa; // Agrega el botón del menú de pausa
 
     private void Start()
     {
@@ -15,12 +14,11 @@ public class PauseController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);
-        botonPausa.SetActive(false); // Deshabilita el botón al inicio
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) // Verifica la tecla "P" para pausar
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) 
         {
             if (isPaused)
             {
@@ -31,6 +29,12 @@ public class PauseController : MonoBehaviour
                 PauseGame();
             }
         }
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // Reanudar el tiempo en el juego
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ResumeGame()
@@ -44,9 +48,7 @@ public class PauseController : MonoBehaviour
         // Ocultar el cursor del ratón nuevamente
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        // Deshabilitar el botón del menú de pausa
-        botonPausa.SetActive(false);
+        Debug.Log("Resuming game...");
     }
 
     public void QuitToMenu(string sceneName)
@@ -66,8 +68,5 @@ public class PauseController : MonoBehaviour
         // Mostrar el cursor del ratón
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // Habilitar el botón del menú de pausa
-        botonPausa.SetActive(true);
     }
 }

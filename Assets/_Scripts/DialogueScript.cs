@@ -11,12 +11,17 @@ public class DialogueScript : MonoBehaviour
     private bool isWriting = false;
     public PlayerController playerController;
 
-    void Start()
+    void OnEnable()
     {
         dialogueText.text = string.Empty;
         isWriting = false;
         index = 0;
         playerController.enabled = false;
+    }
+
+    void OnDisable()
+    {
+        playerController.enabled = true;
     }
 
     void Update()
@@ -52,7 +57,6 @@ public class DialogueScript : MonoBehaviour
         if (!gameObject.activeSelf)
         {
             gameObject.SetActive(true);
-
         }
 
         StartCoroutine(WriteLine());
@@ -71,11 +75,10 @@ public class DialogueScript : MonoBehaviour
         }
         else
         {
-            index=0;
+            index = 0;
             isWriting = false;
         }
     }
-
 
     public void NextLine()
     {
